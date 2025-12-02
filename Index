@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- EDIT HERE: Change the page title -->
+    <title>Your Name - Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide icons for social media -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /*
+        ===================================================================
+        CUSTOMIZATION GUIDE: STYLES AND IMAGE PLACEHOLDERS
+        ===================================================================
+        */
+        
+        /* Custom Font Configuration for a Hand-Drawn Vibe */
+        /* You can change 'Fredericka the Great' to any other Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;600;700&display=swap');
+        
+        .logo-font {
+            font-family: 'Fredericka the Great', cursive;
+            letter-spacing: 0.15em;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfcfc; /* Very light, off-white background */
+        }
+
+        /* Utility class to simulate the look of the staggered artwork grid */
+        .grid-item-tall {
+            height: 40rem; /* Taller on mobile/tablet */
+            @apply lg:h-[45rem]; /* Extra tall on desktop */
+        }
+
+        .grid-item-normal {
+            height: 20rem; /* Shorter on mobile/tablet */
+            @apply lg:h-[22rem]; /* Normal height on desktop */
+        }
+
+        /* Basic styling for the placeholder images */
+        .art-placeholder {
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .art-placeholder:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        /*
+        ===================================================================
+        EDIT HERE: IMAGE PLACEHOLDERS
+        
+        To add your own images, replace the placeholder URLs 
+        (https://placehold.co/...) with direct links to your images. 
+        It is highly recommended to use images optimized for the web.
+        ===================================================================
+        */
+        .img-1 { background-image: url('https://placehold.co/800x1200/5C7C58/ffffff?text=Precious+Art'); }
+        .img-2 { background-image: url('https://placehold.co/800x1600/AA66CC/ffffff?text=Flower+Garden'); }
+        .img-3 { background-image: url('https://placehold.co/800x600/FFB400/333333?text=Childhood+Magic'); }
+        .img-4 { background-image: url('https://placehold.co/800x600/4A90E2/ffffff?text=Starry+Window'); }
+        .img-5 { background-image: url('https://placehold.co/800x800/E53935/ffffff?text=Late+Night+Sketch'); }
+        .img-6 { background-image: url('https://placehold.co/800x800/2A9D8F/ffffff?text=Ocean+Vibes'); } /* New placeholder for Item 7 */
+
+
+        /* Custom styles for the nav menu to match the reference's unique structure */
+        .nav-link {
+            @apply text-xs font-semibold uppercase tracking-wider text-gray-700 hover:text-orange-500 transition duration-150;
+        }
+
+        /* Generic social icon spacing and transition */
+        .social-icon {
+            @apply transition duration-150 ml-4;
+        }
+        
+        /* Custom Behance colors as requested */
+        .behance-brand {
+            color: #15acbe; /* Behance primary color */
+        }
+        .behance-brand:hover {
+            color: #161e33; /* Darker variation */
+        }
+    </style>
+</head>
+<body class="pt-24 lg:pt-32">
+
+    <!-- Sticky Header/Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full bg-white bg-opacity-95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col lg:flex-row items-center justify-between">
+            
+            <!-- Logo and Tagline -->
+            <div class="flex-shrink-0 text-center lg:text-left mb-3 lg:mb-0">
+                <!-- EDIT HERE: Change your name/brand -->
+                <div class="logo-font text-3xl text-orange-400">
+                    YOUR NAME HERE
+                    <!-- Small character illustration placeholder - change the emoji or remove -->
+                    <span class="inline-block text-xl ml-2 text-blue-500">✨</span>
+                </div>
+                <!-- EDIT HERE: Change your profession/title -->
+                <div class="text-xs font-medium tracking-widest text-gray-500 uppercase mt-0.5">
+                    ART DIRECTOR | AUTHOR-ILLUSTRATOR
+                </div>
+            </div>
+
+            <!-- Main Navigation and Social Icons -->
+            <nav class="flex flex-col lg:flex-row items-center space-y-2 lg:space-y-0 lg:space-x-6">
+                
+                <!-- Main Links (Illustration, Graphic Design, About, Contact) -->
+                <div class="flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-1">
+                    <a href="#" class="nav-link">Illustration</a>
+                    <a href="#" class="nav-link">Graphic Design</a>
+                    <a href="#" class="nav-link">About</a>
+                    <a href="#" class="nav-link">Contact</a>
+                </div>
+
+                <!-- Social Icons (Instagram, LinkedIn, and Behance) -->
+                <!-- TO CUSTOMIZE: Change the href="#" and the icon type if needed -->
+                <div class="flex mt-2 lg:mt-0">
+                    <!-- Instagram: Uses default gray/black scheme -->
+                    <a href="#" class="social-icon text-gray-500 hover:text-gray-900">
+                        <i data-lucide="instagram" class="w-4 h-4"></i>
+                    </a>
+                    <!-- LinkedIn: Uses default gray/black scheme -->
+                    <a href="#" class="social-icon text-gray-500 hover:text-gray-900">
+                        <i data-lucide="linkedin" class="w-4 h-4"></i>
+                    </a>
+                    <!-- Behance: Uses custom brand colors -->
+                    <a href="#" class="social-icon behance-brand">
+                        <i data-lucide="behance" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Portfolio Grid Section -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        <!-- 
+        ===================================================================
+        CUSTOMIZATION GUIDE: THE ARTWORK GRID
+        
+        The grid uses a 3-column layout on desktop (lg:grid-cols-3).
+        - Use "grid-item-tall" or "grid-item-normal" classes for height.
+        - Use "lg:col-span-2" to make an item span two columns (like Item 1).
+        - To add a new artwork, copy and paste an existing <div> element 
+          and change its classes (e.g., img-1 to img-6) and its content.
+        ===================================================================
+        -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- Item 1 (Spans 2 columns, is tall) -->
+            <div class="lg:col-span-2 relative overflow-hidden rounded-xl shadow-lg art-placeholder img-1 grid-item-tall">
+                <!-- EDIT HERE: Change the project title -->
+                <div class="absolute top-4 left-4 p-2 bg-white bg-opacity-70 rounded-lg">
+                    <h2 class="text-lg font-bold uppercase tracking-wider text-gray-800">Precious - Children's Book</h2>
+                </div>
+            </div>
+
+            <!-- Item 2 (Top Right - Normal height) -->
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-3 grid-item-normal">
+                <!-- No text overlay here, just art -->
+            </div>
+
+            <!-- Item 3 (Center large square - Tall height) -->
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-2 grid-item-tall">
+                <!-- Art that takes up the full space -->
+            </div>
+
+            <!-- Item 4 (Bottom Right - Normal height) -->
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-4 grid-item-normal">
+                 <!-- Art that takes up the full space -->
+            </div>
+
+            <!-- Item 5 (Bottom Left - Normal height) -->
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-5 grid-item-normal">
+                <!-- Art that takes up the full space -->
+            </div>
+
+            <!-- Item 6 (Example of a colored block - Normal height) -->
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder bg-pink-100 grid-item-normal">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-700">New Project Sketchbook</h3>
+                    <p class="mt-2 text-gray-500">More details coming soon on my Patreon.</p>
+                </div>
+            </div>
+
+            <!-- Item 7 (Now a regular placeholder - Normal height) -->
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-6 grid-item-normal">
+                <div class="absolute top-4 right-4 p-2 bg-white bg-opacity-70 rounded-lg">
+                    <h3 class="text-lg font-bold text-gray-800">Latest Work</h3>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Contact & Footer Section (The "Sticky" Footer as a full-width section) -->
+    <footer class="bg-gray-50 border-t border-gray-200 mt-16 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            
+            <!-- Contact Form -->
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-6">Let's Connect!</h3>
+                <p class="text-gray-600 mb-6">Ready to start a new project or just want to say hello? Send me a message.</p>
+                
+                <form action="#" method="POST" class="space-y-4">
+                    <!-- Name Input -->
+                    <div>
+                        <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 transition duration-150" required>
+                    </div>
+                    <!-- Email Input -->
+                    <div>
+                        <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 transition duration-150" required>
+                    </div>
+                    <!-- Message Textarea -->
+                    <div>
+                        <textarea placeholder="Your Message" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 transition duration-150" required></textarea>
+                    </div>
+                    <!-- Submit Button -->
+                    <div>
+                        <button type="submit" class="w-full bg-orange-500 text-white font-semibold py-3 rounded-lg hover:bg-orange-600 transition duration-150 shadow-md">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Contact Info & Copyright -->
+            <div class="md:pl-12 pt-8 md:pt-0">
+                <h4 class="text-xl font-semibold text-gray-700 mb-4">Find Me Here</h4>
+                <div class="space-y-3 text-gray-600">
+                    <p class="flex items-center">
+                        <i data-lucide="mail" class="w-5 h-5 mr-3 text-orange-400"></i>
+                        <!-- EDIT HERE: Change your contact email -->
+                        hello@yourname.com
+                    </p>
+                    <p class="flex items-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 mr-3 text-orange-400"></i>
+                        Your Location (e.g., Remote or City, State)
+                    </p>
+                    <p class="pt-4">
+                        <span class="font-semibold text-gray-800">Follow My Work:</span>
+                        <div class="flex mt-2 space-x-4">
+                            <!-- Social icons repeated here for visibility in the footer -->
+                            <!-- Instagram: Uses default gray/orange scheme -->
+                            <a href="#" class="text-gray-500 hover:text-orange-500 transition duration-150">
+                                <i data-lucide="instagram" class="w-6 h-6"></i>
+                            </a>
+                            <!-- LinkedIn: Uses default gray/orange scheme -->
+                            <a href="#" class="text-gray-500 hover:text-orange-500 transition duration-150">
+                                <i data-lucide="linkedin" class="w-6 h-6"></i>
+                            </a>
+                            <!-- Behance: Uses custom brand colors -->
+                            <a href="#" class="behance-brand transition duration-150">
+                                <i data-lucide="behance" class="w-6 h-6"></i>
+                            </a>
+                        </div>
+                    </p>
+                </div>
+                
+                <div class="mt-10 pt-6 border-t border-gray-200 text-sm text-gray-400">
+                    <!-- EDIT HERE: Update Copyright Year and Name -->
+                    &copy; 2023 Your Name. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+        
+        // Simple function to dynamically adjust grid height on screen resize for a better look
+        const adjustGrid = () => {
+            const tallItems = document.querySelectorAll('.grid-item-tall');
+            // If window width is less than 1024px (lg breakpoint), use the mobile height
+            if (window.innerWidth < 1024) {
+                tallItems.forEach(item => item.style.height = '30rem');
+            } else {
+                 // Otherwise, use the desktop height defined in CSS
+                 tallItems.forEach(item => item.style.height = '45rem');
+            }
+        };
+
+        window.addEventListener('resize', adjustGrid);
+        window.addEventListener('load', adjustGrid);
+    </script>
+</body>
+</html>
