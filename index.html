@@ -72,6 +72,19 @@
             letter-spacing: 0.05em; /* tracking-wider */
             margin: 0;
         }
+
+        /* Lightbox specific styling */
+        .lightbox-modal {
+            transition: opacity 0.3s ease;
+            /* Hide modal initially */
+            display: none;
+            opacity: 0;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            opacity: 1;
+        }
         
         /*
         ===================================================================
@@ -79,7 +92,8 @@
         ===================================================================
         */
         /* NOTE for Grid Preview: The current grid uses a fixed 1:1 aspect ratio (h-72). 
-        For optimal quality, use square source images (e.g., 800x800, 1000x1000). */
+        For optimal quality, use square source images (e.g., 800x800, 1000x1000). 
+        The JS uses these exact URLs for the lightbox as well. */
         .img-1 { background-image: url('https://placehold.co/800x800/F5F5F5/15acbe?text=Project+One'); }
         .img-2 { background-image: url('https://placehold.co/800x800/E0E0E0/15acbe?text=Project+Two'); }
         .img-3 { background-image: url('https://placehold.co/800x800/F0F0F0/15acbe?text=Project+Three'); }
@@ -164,7 +178,7 @@
                     <a href="#" class="social-icon text-gray-500 hover:text-[#15acbe]">
                         <i data-lucide="linkedin" class="w-4 h-4"></i>
                     </a>
-                    <!-- Behance: Primary color set to #15acbe, hover uses custom CSS class -->
+                    <!-- Behance: This icon is intentionally set to the primary blue, with a darker hover effect. -->
                     <a href="#" class="social-icon text-[#15acbe] behance-brand-hover">
                         <i data-lucide="behance" class="w-4 h-4"></i>
                     </a>
@@ -180,171 +194,176 @@
         THE ARTWORK GALLERY: UNIFORM SQUARE GRID (24 Projects)
         ===================================================================
         -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section id="project-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- 
+            NOTE: Added data-index, data-src, and data-title attributes for JS Lightbox logic.
+            The data-src value here *must* be the final, full-size image URL.
+            -->
 
             <!-- Item 1: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-1 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-1 h-72" data-index="0" data-src="https://placehold.co/1000x1000/F5F5F5/15acbe?text=Project+One+Full" data-title="Project One Title">
                 <div class="project-overlay">
                     <h2>Project One Title</h2>
                 </div>
             </div>
 
             <!-- Item 2: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-2 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-2 h-72" data-index="1" data-src="https://placehold.co/1000x1000/E0E0E0/15acbe?text=Project+Two+Full" data-title="Project Two Title">
                  <div class="project-overlay">
                     <h2>Project Two Title</h2>
                 </div>
             </div>
 
             <!-- Item 3: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-3 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-3 h-72" data-index="2" data-src="https://placehold.co/1000x1000/F0F0F0/15acbe?text=Project+Three+Full" data-title="Project Three Title">
                  <div class="project-overlay">
                     <h2>Project Three Title</h2>
                 </div>
             </div>
 
             <!-- Item 4: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-4 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-4 h-72" data-index="3" data-src="https://placehold.co/1000x1000/D9D9D9/15acbe?text=Project+Four+Full" data-title="Project Four Title">
                 <div class="project-overlay">
                     <h2>Project Four Title</h2>
                 </div>
             </div>
 
             <!-- Item 5: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-5 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-5 h-72" data-index="4" data-src="https://placehold.co/1000x1000/E8E8E8/15acbe?text=Project+Five+Full" data-title="Project Five Title">
                  <div class="project-overlay">
                     <h2>Project Five Title</h2>
                 </div>
             </div>
 
             <!-- Item 6: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-6 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-6 h-72" data-index="5" data-src="https://placehold.co/1000x1000/F0F0F0/15acbe?text=Project+Six+Full" data-title="Project Six Title">
                  <div class="project-overlay">
                     <h2>Project Six Title</h2>
                 </div>
             </div>
 
             <!-- Item 7: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-7 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-7 h-72" data-index="6" data-src="https://placehold.co/1000x1000/F5F5F5/15acbe?text=Project+Seven+Full" data-title="Project Seven Title">
                  <div class="project-overlay">
                     <h2>Project Seven Title</h2>
                 </div>
             </div>
 
             <!-- Item 8: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-8 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-8 h-72" data-index="7" data-src="https://placehold.co/1000x1000/E0E0E0/15acbe?text=Project+Eight+Full" data-title="Project Eight Title">
                  <div class="project-overlay">
                     <h2>Project Eight Title</h2>
                 </div>
             </div>
 
             <!-- Item 9: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-9 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-9 h-72" data-index="8" data-src="https://placehold.co/1000x1000/F0F0F0/15acbe?text=Project+Nine+Full" data-title="Project Nine Title">
                 <div class="project-overlay">
                     <h2>Project Nine Title</h2>
                 </div>
             </div>
 
             <!-- Item 10: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-10 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-10 h-72" data-index="9" data-src="https://placehold.co/1000x1000/D9D9D9/15acbe?text=Project+Ten+Full" data-title="Project Ten Title">
                  <div class="project-overlay">
                     <h2>Project Ten Title</h2>
                 </div>
             </div>
 
             <!-- Item 11: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-11 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-11 h-72" data-index="10" data-src="https://placehold.co/1000x1000/E8E8E8/15acbe?text=Project+Eleven+Full" data-title="Project Eleven Title">
                  <div class="project-overlay">
                     <h2>Project Eleven Title</h2>
                 </div>
             </div>
 
             <!-- Item 12: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-12 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-12 h-72" data-index="11" data-src="https://placehold.co/1000x1000/F5F5F5/15acbe?text=Project+Twelve+Full" data-title="Project Twelve Title">
                  <div class="project-overlay">
                     <h2>Project Twelve Title</h2>
                 </div>
             </div>
 
             <!-- Item 13: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-13 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-13 h-72" data-index="12" data-src="https://placehold.co/1000x1000/E0E0E0/15acbe?text=Project+Thirteen+Full" data-title="Project Thirteen Title">
                 <div class="project-overlay">
                     <h2>Project Thirteen Title</h2>
                 </div>
             </div>
 
             <!-- Item 14: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-14 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-14 h-72" data-index="13" data-src="https://placehold.co/1000x1000/F0F0F0/15acbe?text=Project+Fourteen+Full" data-title="Project Fourteen Title">
                  <div class="project-overlay">
                     <h2>Project Fourteen Title</h2>
                 </div>
             </div>
 
             <!-- Item 15: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-15 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-15 h-72" data-index="14" data-src="https://placehold.co/1000x1000/D9D9D9/15acbe?text=Project+Fifteen+Full" data-title="Project Fifteen Title">
                  <div class="project-overlay">
                     <h2>Project Fifteen Title</h2>
                 </div>
             </div>
 
             <!-- Item 16: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-16 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-16 h-72" data-index="15" data-src="https://placehold.co/1000x1000/E8E8E8/15acbe?text=Project+Sixteen+Full" data-title="Project Sixteen Title">
                  <div class="project-overlay">
                     <h2>Project Sixteen Title</h2>
                 </div>
             </div>
 
             <!-- Item 17: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-17 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-17 h-72" data-index="16" data-src="https://placehold.co/1000x1000/F5F5F5/15acbe?text=Project+Seventeen+Full" data-title="Project Seventeen Title">
                  <div class="project-overlay">
                     <h2>Project Seventeen Title</h2>
                 </div>
             </div>
 
             <!-- Item 18: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-18 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-18 h-72" data-index="17" data-src="https://placehold.co/1000x1000/E0E0E0/15acbe?text=Project+Eighteen+Full" data-title="Project Eighteen Title">
                 <div class="project-overlay">
                     <h2>Project Eighteen Title</h2>
                 </div>
             </div>
 
             <!-- Item 19: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-19 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-19 h-72" data-index="18" data-src="https://placehold.co/1000x1000/F0F0F0/15acbe?text=Project+Nineteen+Full" data-title="Project Nineteen Title">
                  <div class="project-overlay">
                     <h2>Project Nineteen Title</h2>
                 </div>
             </div>
 
             <!-- Item 20: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-20 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-20 h-72" data-index="19" data-src="https://placehold.co/1000x1000/D9D9D9/15acbe?text=Project+Twenty+Full" data-title="Project Twenty Title">
                  <div class="project-overlay">
                     <h2>Project Twenty Title</h2>
                 </div>
             </div>
             
             <!-- Item 21: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-21 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-21 h-72" data-index="20" data-src="https://placehold.co/1000x1000/E8E8E8/15acbe?text=Project+Twenty+One+Full" data-title="Project Twenty One">
                  <div class="project-overlay">
                     <h2>Project Twenty One</h2>
                 </div>
             </div>
 
             <!-- Item 22: Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-22 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-22 h-72" data-index="21" data-src="https://placehold.co/1000x1000/F5F5F5/15acbe?text=Project+Twenty+Two+Full" data-title="Project Twenty Two">
                  <div class="project-overlay">
                     <h2>Project Twenty Two</h2>
                 </div>
             </div>
 
             <!-- Item 23: NEW PROJECT - Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-23 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-23 h-72" data-index="22" data-src="https://placehold.co/1000x1000/D9D9D9/15acbe?text=Project+Twenty+Three+Full" data-title="Project Twenty Three">
                 <div class="project-overlay">
                     <h2>Project Twenty Three</h2>
                 </div>
             </div>
 
             <!-- Item 24: NEW PROJECT - Square (h-72) -->
-            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-24 h-72">
+            <div class="relative overflow-hidden rounded-xl shadow-lg art-placeholder img-24 h-72" data-index="23" data-src="https://placehold.co/1000x1000/E0E0E0/15acbe?text=Project+Twenty+Four+Full" data-title="Project Twenty Four">
                  <div class="project-overlay">
                     <h2>Project Twenty Four</h2>
                 </div>
@@ -428,9 +447,142 @@
     </footer>
 
 
-    <!-- Initialize Lucide Icons -->
+    <!-- ========================================================= -->
+    <!-- LIGHTBOX MODAL STRUCTURE -->
+    <!-- ========================================================= -->
+    <div id="lightbox-modal" class="lightbox-modal fixed inset-0 z-[100] items-center justify-center bg-black bg-opacity-90">
+        <div class="relative w-full h-full flex items-center justify-center p-4 sm:p-8">
+            
+            <!-- Close Button -->
+            <button id="lightbox-close" class="absolute top-4 right-4 text-white hover:text-[#15acbe] transition duration-200 z-50 p-2 rounded-full bg-transparent">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+
+            <!-- Previous Button -->
+            <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 p-4 text-white hover:text-[#15acbe] transition duration-200 z-40 rounded-full bg-black bg-opacity-30 hover:bg-opacity-50 hidden sm:block">
+                <i data-lucide="chevron-left" class="w-8 h-8"></i>
+            </button>
+
+            <!-- Next Button -->
+            <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 p-4 text-white hover:text-[#15acbe] transition duration-200 z-40 rounded-full bg-black bg-opacity-30 hover:bg-opacity-50 hidden sm:block">
+                <i data-lucide="chevron-right" class="w-8 h-8"></i>
+            </button>
+            
+            <!-- Image Container -->
+            <div class="max-w-4xl max-h-full flex flex-col items-center">
+                <img id="lightbox-image" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl" src="" alt="Full-size project image">
+                
+                <!-- Title/Caption Area -->
+                <div class="mt-4 p-2 text-center text-white bg-black bg-opacity-50 rounded-lg max-w-full">
+                    <h3 id="lightbox-title" class="text-xl font-bold"></h3>
+                    <p id="lightbox-counter" class="text-sm opacity-70 mt-1"></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- JAVASCRIPT FOR LIGHTBOX FUNCTIONALITY -->
+    <!-- ========================================================= -->
     <script>
         lucide.createIcons();
+
+        // 1. Setup Project Data (Mirrors the data-* attributes in the HTML)
+        const projects = [];
+        const projectElements = document.querySelectorAll('.art-placeholder');
+        
+        projectElements.forEach(element => {
+            projects.push({
+                src: element.getAttribute('data-src'),
+                title: element.getAttribute('data-title')
+            });
+        });
+
+        let currentProjectIndex = -1;
+
+        // 2. Get DOM elements
+        const modal = document.getElementById('lightbox-modal');
+        const modalImage = document.getElementById('lightbox-image');
+        const modalTitle = document.getElementById('lightbox-title');
+        const modalCounter = document.getElementById('lightbox-counter');
+        const closeModalButton = document.getElementById('lightbox-close');
+        const prevButton = document.getElementById('lightbox-prev');
+        const nextButton = document.getElementById('lightbox-next');
+
+        // 3. Core Function to Display Image
+        function showImage(index) {
+            if (index < 0) {
+                index = projects.length - 1; // Wrap around to last image
+            } else if (index >= projects.length) {
+                index = 0; // Wrap around to first image
+            }
+
+            currentProjectIndex = index;
+            const project = projects[currentProjectIndex];
+
+            modalImage.src = project.src;
+            modalTitle.textContent = project.title;
+            modalCounter.textContent = `${currentProjectIndex + 1} of ${projects.length}`;
+        }
+
+        // 4. Event Handlers
+        function openModal(index) {
+            showImage(index);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling on body
+        }
+
+        function closeLightbox() {
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+            currentProjectIndex = -1;
+        }
+
+        function navigate(direction) {
+            if (currentProjectIndex !== -1) {
+                showImage(currentProjectIndex + direction);
+            }
+        }
+
+        // 5. Attach Listeners
+
+        // Open modal when a project is clicked
+        projectElements.forEach(element => {
+            element.addEventListener('click', () => {
+                const index = parseInt(element.getAttribute('data-index'));
+                openModal(index);
+            });
+        });
+
+        // Close button listener
+        closeModalButton.addEventListener('click', closeLightbox);
+        
+        // Navigation listeners
+        prevButton.addEventListener('click', () => navigate(-1));
+        nextButton.addEventListener('click', () => navigate(1));
+
+        // Close on escape key press
+        document.addEventListener('keydown', (e) => {
+            if (modal.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    navigate(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigate(1);
+                }
+            }
+        });
+
+        // Close when clicking outside the image (on the modal backdrop)
+        modal.addEventListener('click', (e) => {
+            // Check if the click target is the modal itself (not a child element)
+            if (e.target.id === 'lightbox-modal') {
+                closeLightbox();
+            }
+        });
     </script>
 </body>
 </html>
